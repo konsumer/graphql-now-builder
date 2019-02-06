@@ -1,6 +1,6 @@
 {
   "name": "graphql-now-builder",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Quickly build a graphql server on now.sh, from a simple config file.",
   "peerDependencies": {
     "@now/build-utils": "^0.4.34"
