@@ -10,7 +10,8 @@ module.exports = {
 
     let pkg = { dependencies: {} }
     if (files['package.json']) {
-      const { data } = await files['package.json'].fromStream({ stream: files[entrypoint].toStream() })
+      const stream = files['package.json'].toStream()
+      const { data } = await FileBlob.fromStream({ stream })
       pkg = JSON.parse(data.toString())
     }
 
