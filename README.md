@@ -1,57 +1,41 @@
 # graphql-now-builder
 
-This lets you quickly build a graphql server on now.sh, from a simple config file.
+a [now builder](https://zeit.co/docs/v2/deployments/builders/overview/) for graphql services
 
-## configuration
+## usage
 
-Put something like this in your `now.json`:
+create an `index.js` file
+
+```js
+module.exports = {
+  typeDefs: `
+    type Query {
+      hello: String
+    }
+  `,
+  resolvers: {
+    hello: () => `hello world`
+  }
+  // any other apollo-server config
+}
+```
+
+where `typeDefs` is a string that decscribes your schema, then create a `now.json` file
 
 ```json
 {
   "version": 2,
   "builds": [
-    { "src": "./graphql.js", "use": "graphql-now-builder" },
+    { "src": "index.js", "use": "now-graphql" }
   ],
   "routes": [
-    { "src": "/graphql", "dest": "./graphql.js" }
+    { "src": "/graphql", "dest": "index.js" }
   ]
 }
 ```
 
-All of your files will be built with ncc in to a single service. Your dependencies are tracked normally in a `package.json` that is at the same level as your `src` config file.
+then run `now` to deploy with [now](https://now.sh/).
 
-The builder will open `graphql.js` and build a service for you, as a lambda.
+Since you can use any [apollo-server](https://www.apollographql.com/docs/apollo-server/api/apollo-server.html) config, feel free to use `schema` or anything else you might do with that.
 
-Make your `graphql.js` look something like this:
-
-```js
-module.exports = {
-  // globs, relative to config file
-  schemaDirectives: './schemaDirectives.js', // optional
-  typeDefs: './schema/**/*.graphql',         // merged
-  resolvers: './resolvers/**/*.js',          // optional, merged, misisng will be mocked
-  
-  // apollo-server options here
-  introspection: true,
-  playground: { settings: { 'request.credentials': 'same-origin' } }
-}
-```
-
-### context
-
-You can also feed your resolvers & directives a custom `context` file, which exports a function:
-
-```js
-module.exports = {
-  typeDefs: './schema/**/*.graphql',         // merged
-  context: './context.js'
-}
-```
-
-where `context.js` looks like this:
-
-```js
-module.exports = ctx => ({ ...ctx, mything: true })
-```
-
-This will allow you to check headers (from `ctx.req`) or insert things like database-libraries or whatever.
+The default path is `/graphql`, but you can change that by adding `path` to your server, and updating your route in `now.json` to point to it.
