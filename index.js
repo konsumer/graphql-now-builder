@@ -27,7 +27,7 @@ module.exports = {
     console.log({ entrypoint, files, workPath })
 
     return build({ entrypoint, files, workPath })
-  }
-  // prepareCache,
-  // config
+  },
+  prepareCache,
+  config
 }
