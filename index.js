@@ -6,6 +6,8 @@ const { build, prepareCache, config } = require('@now/node')
 
 module.exports = {
   build: async ({ files, entrypoint, workPath }) => {
+    console.log(Object.keys(files))
+
     console.log(`adding graphql dependencies to package.json`)
 
     let pkg = { dependencies: {} }
