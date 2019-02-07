@@ -7,8 +7,6 @@ const { build, prepareCache, config } = require('@now/node')
 
 module.exports = {
   build: async ({ files, entrypoint, workPath }) => {
-    console.log(Object.keys(files))
-
     console.log(`adding graphql dependencies to package.json`)
 
     let pkg = { dependencies: {} }
@@ -25,6 +23,8 @@ module.exports = {
     console.log(`setting graphql entrypoint`)
     files['_entrypoint.js'] = files[entrypoint]
     files[entrypoint] = new FileFsRef({ fsPath: path.join(__dirname, 'server/index.js') })
+
+    console.log({ entrypoint, files, workPath })
 
     return build({ entrypoint, files, workPath })
   },
