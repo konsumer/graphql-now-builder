@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "apollo-server-express": "latest",
+    "graphql": "latest",
     "express": "latest"
   }
 }
