@@ -11,7 +11,7 @@ module.exports = {
     let pkg = { dependencies: {} }
     if (files['package.json']) {
       const { data } = await files['package.json'].fromStream({ stream: files[entrypoint].toStream() })
-      pkg = JSON.parse(data)
+      pkg = JSON.parse(data.toString())
     }
 
     const json = JSON.parse(await fs.readFile(path.join(__dirname, 'server/package.json'), 'utf8'))
