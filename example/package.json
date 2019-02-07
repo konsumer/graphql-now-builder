@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "chroma-js": "latest"
+    "chroma-js": "latest",
+    "merge-graphql-schemas": "latest"
   }
 }

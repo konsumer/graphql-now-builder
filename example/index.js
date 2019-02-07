@@ -1,20 +1,11 @@
-const chroma = require('chroma-js')
+const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas')
+
+const resolvers = mergeResolvers(fileLoader(`${__dirname}/resolvers/**/*.js`))
+const typeDefs = mergeTypes(fileLoader(`${__dirname}/schema/**/*.graphql`), { all: true })
 
 module.exports = {
-  typeDefs: `
-    type Query {
-      hello: String
-      color2hex(color: String!): String
-    }
-  `,
-
-  resolvers: {
-    Query: {
-      hello: () => `hello world`,
-      color2hex: (obj, { color }) => chroma(color).hex()
-    }
-  },
-
+  typeDefs,
+  resolvers,
   introspection: true,
   playground: true
 }

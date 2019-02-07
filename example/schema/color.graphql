@@ -1,0 +1,3 @@
+type Query {
+  color2hex(color: String!): String
+}
