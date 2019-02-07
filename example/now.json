@@ -1,6 +1,10 @@
 {
   "version": 2,
+  "name": "graphql-now-builder-example",
   "builds": [
     { "src": "index.js", "use": "graphql-now-builder" }
+  ],
+  "routes": [
+    { "src": "/graphql", "dest": "index.js" }
   ]
 }

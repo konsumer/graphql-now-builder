@@ -1,14 +1,20 @@
+const chroma = require('chroma-js')
+
 module.exports = {
   typeDefs: `
     type Query {
       hello: String
+      color2hex(color: String!): String
     }
   `,
 
   resolvers: {
-    hello: () => `hello world`
+    Query: {
+      hello: () => `hello world`,
+      color2hex: (obj, { color }) => chroma(color).hex()
+    }
   },
 
   introspection: true,
-  playground: { settings: { 'request.credentials': 'same-origin' } }
+  playground: true
 }
