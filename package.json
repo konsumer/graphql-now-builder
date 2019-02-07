@@ -1,27 +1,10 @@
 {
   "name": "graphql-now-builder",
   "version": "0.0.1",
-  "description": "Quickly build a graphql server on now.sh, from a simple config file.",
-  "peerDependencies": {
-    "@now/build-utils": "^0.4.34"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/konsumer/graphql-now-builder.git"
-  },
-  "keywords": [
-    "now",
-    "graphql",
-    "apollo"
-  ],
-  "author": "David Konsumer <konsumer@jetboystudio.com> (http://konsumer.js.org)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/konsumer/graphql-now-builder/issues"
-  },
-  "homepage": "https://github.com/konsumer/graphql-now-builder#readme"
+  "main": "index.js",
+  "dependencies": {
+    "@now/build-utils": "^0.4.31",
+    "@now/node": "^0.4.27",
+    "fs-extra": "^7.0.1"
+  }
 }
