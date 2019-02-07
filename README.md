@@ -14,7 +14,9 @@ module.exports = {
     }
   `,
   resolvers: {
-    hello: () => `hello world`
+    Query: {
+      hello: () => `hello world`
+    }
   }
   // any other apollo-server config
 }
