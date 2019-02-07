@@ -26,7 +26,7 @@ where `typeDefs` is a string that decscribes your schema, then create a `now.jso
 {
   "version": 2,
   "builds": [
-    { "src": "index.js", "use": "now-graphql" }
+    { "src": "index.js", "use": "graphql-now-builder" }
   ],
   "routes": [
     { "src": "/graphql", "dest": "index.js" }
