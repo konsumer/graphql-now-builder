@@ -26,7 +26,10 @@ module.exports = {
 
     console.log({ entrypoint, files, workPath })
 
-    return build({ entrypoint, files, workPath })
+    const code = build({ entrypoint, files, workPath })
+
+    // add all other files
+    return { ...files, ...code }
   },
   prepareCache,
   config
