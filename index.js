@@ -3,7 +3,6 @@ const path = require('path')
 const FileFsRef = require('@now/build-utils/file-fs-ref')
 const FileBlob = require('@now/build-utils/file-blob')
 const { build, prepareCache, config } = require('@now/node')
-// const glob = require('@now/build-utils/fs/glob')
 
 module.exports = {
   build: async ({ files, entrypoint, workPath }) => {
@@ -30,7 +29,7 @@ module.exports = {
 
     // add all other files
     return { ...files, ...code }
-  },
-  prepareCache,
-  config
+  }
+  // prepareCache,
+  // config
 }
