@@ -23,13 +23,18 @@ module.exports = {
     files['_entrypoint.js'] = files[entrypoint]
     files[entrypoint] = new FileFsRef({ fsPath: path.join(__dirname, 'server/index.js') })
 
-    console.log({ entrypoint, files, workPath })
-
     const code = build({ entrypoint, files, workPath })
 
-    // add all other files
-    return { ...files, ...code }
-  }
-  // prepareCache,
-  // config
+    await Promise.all(Object.keys(files).map(async f => {
+      if (!code[f]) {
+        const stream = code[f].toStream()
+        const { data } = await FileBlob.fromStream({ stream })
+        code[f] = new FileBlob({ data: data.toString() })
+      }
+    }))
+
+    return code
+  },
+  prepareCache,
+  config
 }
