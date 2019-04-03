@@ -7,6 +7,7 @@ const { build, prepareCache, config } = require('@now/node')
 module.exports = {
   build: async ({ files, entrypoint, workPath }) => {
     console.log(`adding graphql dependencies to package.json`)
+    console.log('Building', { entrypoint, workPath })
 
     let pkg = { dependencies: {} }
     if (files['package.json']) {
@@ -25,13 +26,14 @@ module.exports = {
 
     const code = build({ entrypoint, files, workPath })
 
-    await Promise.all(Object.keys(files).map(async f => {
-      if (!code[f]) {
-        const stream = code[f].toStream()
-        const { data } = await FileBlob.fromStream({ stream })
-        code[f] = new FileBlob({ data: data.toString() })
-      }
-    }))
+    // non-code files?
+    // await Promise.all(Object.keys(files).map(async f => {
+    //   if (!code[f]) {
+    //     const stream = code[f].toStream()
+    //     const { data } = await FileBlob.fromStream({ stream })
+    //     code[f] = new FileBlob({ data: data.toString() })
+    //   }
+    // }))
 
     return code
   },
