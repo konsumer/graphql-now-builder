@@ -4,6 +4,8 @@ const { ApolloServer } = require('apollo-server-express')
 // this is the entrypoint code
 const config = require('./_entrypoint')
 
+const path = (config && config.path) || '/graphql'
+
 const app = express()
 
 // load a sub-app for greater control
