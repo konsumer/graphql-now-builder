@@ -1,6 +1,6 @@
 {
   "name": "graphql-now-builder",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "main": "index.js",
   "dependencies": {
     "@now/build-utils": "^0.4.31",
