@@ -8,10 +8,10 @@ const app = express()
 
 // load a sub-app for greater control
 const childApp = express()
-const path = config.path || '/graphql'
+const path = (config && config.path) || '/graphql'
 const server = new ApolloServer(config)
-server.applyMiddleware({ childApp, path })
+server.applyMiddleware({ app: childApp, path })
 
 app.use(path, childApp)
 
-module.exports = app
+module.exports = app 
