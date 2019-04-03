@@ -9,7 +9,7 @@ module.exports = {
     console.log(`adding graphql dependencies to package.json`)
     console.log('Building', { entrypoint, workPath })
 
-    let prefx = entrypoint.indexOf('') === -1 ? '' : `${path.dirname(entrypoint)}/`
+    const prefix = entrypoint.indexOf('') === -1 ? '' : `${path.dirname(entrypoint)}/`
 
     let pkg = { dependencies: {} }
     if (files[`${prefix}package.json`]) {
